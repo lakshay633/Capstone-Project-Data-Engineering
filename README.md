@@ -34,13 +34,6 @@ Some of the key challenges in this project include:
 
 ---
 
-## 📌 Next Steps
-- Optimize dbt models for performance.
-- Set up monitoring and alerting for data pipelines.
-- Enhance documentation for future scalability.
-
----
-
 ### 💡 Contributing
 Feel free to contribute by submitting pull requests or raising issues for improvements.
 
