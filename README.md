@@ -5,7 +5,7 @@ This project is focused on implementing **Data Engineering** workflows using **d
 
 ---
 
-## 🚀 Dependencies
+## Dependencies
 Ensure you have the following dependencies installed before running the project:
 
 ```plaintext
@@ -26,7 +26,7 @@ pip install -r requirements.txt
 
 ---
 
-## ⚡ Challenges Faced
+## Challenges Faced
 Some of the key challenges in this project include:
 
 - **Writing Effective Test Cases**: Ensuring data quality and consistency through well-structured unit and integration tests.
@@ -34,7 +34,15 @@ Some of the key challenges in this project include:
 
 ---
 
-### 💡 Contributing
+### Results
+- **Micros**: By using 2 micros for 'Profit' and 'Discount Percentage' we have added 2 columns to the views as follows:
+
+![image](https://github.com/user-attachments/assets/f6e7d967-b4d8-4f42-9c9e-ddd8d62b8bac)
+
+
+---
+
+### Contributing
 Feel free to contribute by submitting pull requests or raising issues for improvements.
 
 ---
