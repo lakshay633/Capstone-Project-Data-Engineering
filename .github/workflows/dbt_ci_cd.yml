@@ -50,6 +50,10 @@ jobs:
         working-directory: cpde
         run: dbt debug
 
+      - name: Install dbt Dependencies
+        working-directory: cpde
+        run: dbt deps
+
       - name: Run dbt Models
         working-directory: cpde
         run: dbt run
