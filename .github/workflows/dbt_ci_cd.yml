@@ -1,0 +1,59 @@
+name: dbt CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  dbt-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.13"
+
+      - name: Install Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install dbt-snowflake
+
+      - name: Generate profiles.yml
+        run: |
+          mkdir -p ~/.dbt
+          echo "
+          default:
+            outputs:
+              dev:
+                type: snowflake
+                account: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+                user: ${{ secrets.SNOWFLAKE_USER }}
+                password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+                database: ${{ secrets.SNOWFLAKE_DATABASE }}
+                warehouse: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+                role: ${{ secrets.SNOWFLAKE_ROLE }}
+                schema: ${{ secrets.SNOWFLAKE_SCHEMA }}
+                threads: 4
+                client_session_keep_alive: False
+            target: dev
+          " > ~/.dbt/profiles.yml
+
+      - name: Test dbt Connection
+        working-directory: cpde
+        run: dbt debug
+
+      - name: Run dbt Models
+        working-directory: cpde
+        run: dbt run
+
+      - name: Run dbt Tests
+        working-directory: cpde
+        run: dbt test
